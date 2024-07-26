@@ -13,7 +13,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/ShowSummary', methods=['POST'])
+@app.route('/showSummary', methods=['POST'])
 def show_summary():
     try:
         club = [club for club in clubs if club['email'] == request.form['email']][0]
@@ -35,9 +35,8 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
-@app.route('/PurchasePlaces', methods=['POST'])
+@app.route('/purchasePlaces', methods=['POST'])
 def purchase_places():
-
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     places_required = int(request.form['places'])
@@ -49,8 +48,10 @@ def purchase_places():
 # TODO: Add route for points display
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
