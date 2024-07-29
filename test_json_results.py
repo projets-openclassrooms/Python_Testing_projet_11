@@ -1,4 +1,4 @@
-from server import app
+from server import app, clubs, competitions
 from utils import settings
 
 import json
@@ -9,16 +9,15 @@ import pytest
 def client():
     app.config['TESTING'] = True
     with app.test_client() as client:
-        with app.app_context():
-            pass
         yield client
 
 
-def test_purchase_places(self):
+def test_purchase_places(client):
     data = {
-        "competition": "Spring Festival",
-        "club": "Simply Lift",
-        "numberOfPlaces": "25"
+        "club": clubs[0]["name"],
+        "numberOfPlaces": "25",
+        "competition": competitions[0]["name"],
+
     }
-    response = self.client.post("/purchasePlaces", data=data)
-    assert response.status.code == 200
+    response = client.post("/purchasePlaces", data=data)
+    assert response.status == '400 BAD REQUEST'

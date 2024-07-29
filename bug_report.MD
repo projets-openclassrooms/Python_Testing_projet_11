@@ -11,4 +11,5 @@
 - message for wrong email
 - divide number of places / secretary to have equal numbers of places / secretary
 - division non null
+- conversion str en int depuis fichiers json
 - results saved

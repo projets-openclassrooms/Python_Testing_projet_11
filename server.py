@@ -42,8 +42,9 @@ def purchase_places():
     places_required = int(request.form['places'])
 
     # Calcul des places requises  equitablement et sauvegarder resultat
-    competition['numberOfPlaces'] = str(int(competition['numberOfPlaces']) - places_required)
-    club['points'] = str(club['points'] - places_required)
+    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
+    club['points'] = int(club['points']) - places_required
+    print(club['points'])
 
 
 
