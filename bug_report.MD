@@ -12,5 +12,6 @@
 * message 'Sorry, that email was not found' to correct
 * substract number of places / secretary to have equal numbers of places / secretary
 * number of places = 12
+* 
 * conversion str -> int from json
 * results saved
