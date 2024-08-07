@@ -9,6 +9,13 @@ clubs = load_clubs()
 places_to_purchase = {}
 
 
+def search_club(club_email):
+    foundclubs = [club for club in clubs if club['email'] == club_email]
+    if len(foundclubs) > 0:
+        return foundclubs[0]
+    return None
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -16,12 +23,10 @@ def index():
 
 @app.route('/showSummary', methods=['POST'])
 def show_summary():
-    try:
-        club = [club for club in clubs if club['email'] == request.form['email']][0]
-        # print(club)
-        # print(competitions[0]['name'])
+    club = search_club(request.form['email'])
+    if club:
         return render_template('welcome.html', club=club, competitions=competitions)
-    except IndexError:
+    else:
         flash('Sorry, that email was not found')
         return render_template('index.html')
 

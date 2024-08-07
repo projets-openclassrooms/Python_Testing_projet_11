@@ -1,5 +1,6 @@
 import json
 
+MAX_PLACES_PER_COMPETITION = 12
 
 def load_clubs():
     with open('clubs.json') as c:
