@@ -63,7 +63,7 @@ def purchasePlaces():
         flash("You can't book a negative number of places.")
         return render_template('booking.html', club=club, competition=competition)
 
-    if places_required > 12:
+    if places_required > MAX_PLACES_PER_COMPETITION:
         flash("You can't book more than 12 places in a competition.")
         return render_template('booking.html', club=club, competition=competition)
 
@@ -79,7 +79,7 @@ def purchasePlaces():
         return render_template('booking.html', club=club, competition=competition)
 
     total_booked = places_to_purchase.get(competition['name'], 0)
-    if total_booked >= 12:
+    if total_booked >= MAX_PLACES_PER_COMPETITION:
         flash("You have already booked 12 places for this competition.")
         return render_template('booking.html', club=club, competition=competition)
 
