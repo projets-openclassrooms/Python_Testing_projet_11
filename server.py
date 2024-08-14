@@ -53,9 +53,8 @@ def purchasePlaces():
         flash("Please enter the number of places to reserve.")
         return render_template('booking.html', club=club, competition=competition), 400
 
-    try:
-        places_required = int(places_required)
-    except ValueError:
+    places_required = int(places_required)
+    if not places_required:
         flash("Please enter a valid number.")
         return render_template('booking.html', club=club, competition=competition), 400
 
@@ -70,11 +69,8 @@ def purchasePlaces():
     places_available = int(competition['numberOfPlaces'])
     club_points = int(club['points'])
 
-    if places_required > places_available:
-        flash("Not enough places available")
-        return render_template('booking.html', club=club, competition=competition)
-
-    if places_required > club_points:
+ # Checks if required places exceed available points and displays flash message accordingly.
+    if places_required > places_available or places_required > club_points:
         flash("You don't have enough points.")
         return render_template('booking.html', club=club, competition=competition)
 
