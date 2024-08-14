@@ -1,5 +1,5 @@
 from utils.settings import *
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, session
 
 app = Flask(__name__)
 app.secret_key = 'something_special'
@@ -94,7 +94,13 @@ def purchasePlaces():
 # TODO: Add route for points display
 @app.route('/dashboard')
 def display_dashboard():
-    return render_template('dashboard.html', clubs=clubs)
+
+    club_email = session.get("club_email")
+    if club_email:
+        club = [club for club in clubs if club["email"] == club_email][0]
+    else:
+        club = None
+    return render_template('dashboard.html', clubs=clubs, current_club=club)
 
 
 @app.route('/logout')
