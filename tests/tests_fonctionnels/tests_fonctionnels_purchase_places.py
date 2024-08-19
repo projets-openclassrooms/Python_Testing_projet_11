@@ -4,7 +4,14 @@ from utils import settings
 import json
 import pytest
 
+"""
+connexion au site
+consultation de tableau
+inscription un joueur à une future compétition
+décompte de points
+decompte de places 
 
+"""
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
@@ -177,3 +184,4 @@ def test_purchase_places_already_12_booked(client):
         'numberOfPlaces': '1'
     })
     assert b"You have already booked 12 places for this competition." in response.data
+

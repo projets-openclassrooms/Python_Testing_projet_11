@@ -8,10 +8,10 @@ def load_clubs():
         return list_of_clubs
 
 
-def save_clubs(clubs):
-    with open('clubs.json', 'w') as c:
-        clubs_dict = {"clubs": clubs}
-        json.dump(clubs_dict, c, indent=4)
+# def save_clubs(clubs):
+#     with open('clubs.json', 'w') as c:
+#         clubs_dict = {"clubs": clubs}
+#         json.dump(clubs_dict, c, indent=4)
 
 
 def Load_Competitions():
