@@ -95,7 +95,7 @@ def purchasePlaces():
     return render_template('booking.html', club=club, competition=competition)
 
 
-# TODO: Add route for points display
+# Add route for points display
 @app.route('/dashboard')
 def display_dashboard():
     club_email = session.get("club_email")
@@ -108,6 +108,8 @@ def display_dashboard():
 
 @app.route('/logout')
 def logout():
+    if session:
+        session.pop("club_email", None)
     return redirect(url_for('index'))
 
 
