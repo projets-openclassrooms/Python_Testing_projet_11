@@ -18,7 +18,7 @@ def search_club(club_email):
 
 @app.route('/')
 def index():
-    #test affichage dashboard dans la page index
+    # test affichage dashboard dans la page index
     dashboard_template = display_dashboard()
     return render_template('index.html', dashboard=dashboard_template)
 
@@ -51,11 +51,10 @@ def purchasePlaces():
     club = next((c for c in clubs if c['name'] == request.form['club']), None)
     places_required = request.form['places']
 
-    places_required = int(places_required)
-    if not places_required or not places_required:
+    if not places_required:
         flash("Please enter the number of places to reserve or a valid number.")
         return render_template('booking.html', club=club, competition=competition), 400
-
+    places_required = int(places_required)
 
     # if not places_required:
     #     flash("Please enter a valid number.")
@@ -72,7 +71,7 @@ def purchasePlaces():
     places_available = int(competition['numberOfPlaces'])
     club_points = int(club['points'])
 
- # Checks if required places exceed available points and displays flash message accordingly.
+    # Checks if required places exceed available points and displays flash message accordingly.
     if places_required > places_available or places_required > club_points:
         flash("You don't have enough points.\n")
         flash(" You can't book more than 12 places in a competition.\n ")
@@ -99,7 +98,6 @@ def purchasePlaces():
 # TODO: Add route for points display
 @app.route('/dashboard')
 def display_dashboard():
-
     club_email = session.get("club_email")
     if club_email:
         club = [club for club in clubs if club["email"] == club_email][0]
