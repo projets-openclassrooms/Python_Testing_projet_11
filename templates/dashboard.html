@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Points Display Board | GUDLFT Registration</title>
 </head>
-    <a href="{{ url_for('index') }}">Home</a>
+    {% if session.club_email %}
+    <a href="{{ url_for('showSummary') }}">Back to summary</a>
+    <br> <a href="{{ url_for('logout') }}">Logout</a> <br>
+    {% else %}
+    <a href="{{ url_for('index') }}">Previous</a>
+    {% endif %}
 <body>
     <h1>Points Display Board | GUDLFT Registration</h1>
     <table>

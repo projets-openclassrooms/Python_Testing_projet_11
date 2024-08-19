@@ -56,6 +56,7 @@ def purchasePlaces():
         flash("Please enter the number of places to reserve or a valid number.")
         return render_template('booking.html', club=club, competition=competition), 400
 
+
     # if not places_required:
     #     flash("Please enter a valid number.")
     #     return render_template('booking.html', club=club, competition=competition), 400
