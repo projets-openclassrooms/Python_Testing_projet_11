@@ -22,7 +22,7 @@ def index():
     dashboard_template = display_dashboard()
     return render_template('index.html', dashboard=dashboard_template)
 
-
+# route avec message bienvenue
 @app.route('/showSummary', methods=['POST'])
 def show_summary():
     club = search_club(request.form['email'])
@@ -32,7 +32,7 @@ def show_summary():
         flash('Sorry, that email was not found')
         return render_template('index.html')
 
-
+# route pour book places
 @app.route('/book/<competition>/<club>')
 def book(competition, club):
     found_club = [c for c in clubs if c['name'] == club][0]
@@ -44,7 +44,7 @@ def book(competition, club):
         flash("Something went wrong-please try again")
         return render_template('welcome.html', club=club, competitions=competitions), 400
 
-
+# route pour controle achat places avec repartition equilibree
 @app.route('/purchasePlaces', methods=['POST'])
 def purchasePlaces():
     competition = next((c for c in competitions if c['name'] == request.form['competition']), None)
@@ -55,10 +55,6 @@ def purchasePlaces():
         flash("Please enter the number of places to reserve or a valid number.")
         return render_template('booking.html', club=club, competition=competition), 400
     places_required = int(places_required)
-
-    # if not places_required:
-    #     flash("Please enter a valid number.")
-    #     return render_template('booking.html', club=club, competition=competition), 400
 
     if places_required <= 0:
         flash("You can't book a negative number of places.")
